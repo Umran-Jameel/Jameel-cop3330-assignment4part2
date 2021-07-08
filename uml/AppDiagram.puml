@@ -1,0 +1,67 @@
+@startuml
+'https://plantuml.com/class-diagram
+class ApplicationController {
+ + addNewListClicked(ActionEvent actionEvent): void
+ + removeExistingListCLicked(ActionEvent actionEvent) : void
+ + saveListToStorageClicked(ActionEvent actionEvent) : void
+ + saveAllListsCLicked(ActionEvent actionEvent) : void
+ + loadListClicked(ActionEvent actionEvent) : void
+ + editTitleClicked(ActionEvent actionEvent) : void
+ + editDescriptionClicked(ActionEvent actionEvent) : void
+ + addItemClicked(ActionEvent actionEvent) : void
+ + removeItemCLicked(ActionEvent actionEvent) : void
+ + editDueDateClicked(ActionEvent actionEvent) : void
+ + markItemCompleteClicked(ActionEvent actionEvent) : void
+}
+
+class ListAssignment {
+ + main(String[] args) : void
+ + start(Stage primaryStage) : void
+}
+
+class Display {
+ + displayAllItems(ToDoList list) : ArrayList<String>
+ + displayCompleted(ToDoList list) : ArrayList<String>
+ + displayIncomplete(ToDoList list) : ArrayList<String>
+}
+
+class ListEditor{
+ + editTitle(ToDoList list) : void
+ + addToList(ToDoList list) : void
+ + removeFromList(ToDoList list) : void
+ + editDesrciption(ToDoList list) : void
+ + editDueDate(ToDoList list) : void
+ + markAsCompleted(ToDoList list) : void
+}
+
+class ListOfToDoLists {
+ ArrayList<ToDoList> arr
+}
+
+class SaveAndLoader {
+ + saveListToStorage(ToDoList list) : void
+ + saveAllListsToStorage(ListOfToDoLists list) : void
+ + loadList() : void
+ + loadMultipleLists() : void
+}
+
+class ToDoList {
+ String title
+ ArrayList<String> itemName
+ ArrayList<Boolean> status
+ ArrayList<String> description
+ ArrayList<Integer> year
+ ArrayList<Integer> month
+ ArrayList<Integer> day
+ ListEditor le
+}
+
+javafx.Application <|-- ListAssignment
+ApplicationController -- ListAssignment
+ToDoList"100..*" --* "contains"ListOfToDoLists
+ToDoList <.. ListOfToDoLists
+ToDoList --"uses" Display
+ToDoList -- "uses" ListEditor
+javafx.Application"contains" *-- ListOfToDoLists
+javafx.Application *-- "uses"SaveAndLoader
+@enduml
