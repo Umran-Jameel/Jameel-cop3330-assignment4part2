@@ -10,29 +10,31 @@
 
 <Accordion maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.ApplicationController">
   <panes>
-    <TitledPane alignment="CENTER" animated="false" text="Add or Remove a list">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+      <TitledPane alignment="CENTER" animated="false" layoutX="10.0" layoutY="10.0" text="Display Items">
+         <content>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <GridPane layoutX="199.0" layoutY="116.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="182.0" minWidth="10.0" prefWidth="182.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="96.0" minWidth="10.0" prefWidth="18.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
+                  <GridPane layoutX="162.0" layoutY="92.0" prefHeight="90.0" prefWidth="334.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="157.0" minWidth="10.0" prefWidth="147.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="10.0" prefWidth="150.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="36.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="29.0" minHeight="10.0" prefHeight="29.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" onAction="#addNewListClicked" text="Add a new List" />
-                        <Button mnemonicParsing="false" onAction="#removeExistingListClicked" prefHeight="26.0" prefWidth="151.0" text="Remove an Existing List" GridPane.rowIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#displayIncompleteClicked" text="Display Incomplete Items" GridPane.columnIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#displayAllClicked" text="Display All Items" />
+                        <Button mnemonicParsing="false" onAction="#displayCompleteClicked" text="Display Complete Items" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
-               </children></AnchorPane>
-      </content>
-    </TitledPane>
-    <TitledPane alignment="CENTER" animated="false" text="Save or Load Lists">
+               </children>
+            </AnchorPane>
+         </content>
+      </TitledPane>
+    <TitledPane alignment="CENTER" animated="false" text="Save or Load List">
          <content>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
@@ -47,17 +49,15 @@
                       <RowConstraints maxHeight="29.0" minHeight="10.0" prefHeight="29.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" onAction="#saveListToStorageClicked" text="Save a List to Storage" />
-                        <Button mnemonicParsing="false" onAction="#saveAllListsClicked" text="Save All Lists to Storage" GridPane.rowIndex="1" />
                         <Button mnemonicParsing="false" onAction="#loadListClicked" text="Load a list from Storage" GridPane.columnIndex="1" />
-                        <Button mnemonicParsing="false" onAction="#loadAllListsClicked" prefHeight="26.0" prefWidth="162.0" text="Load all lists from Storage" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#saveListToStorageClicked" text="Save the list to storage" />
                      </children>
                   </GridPane>
                </children>
             </AnchorPane>
          </content>
     </TitledPane>
-      <TitledPane alignment="CENTER" animated="false" text="Edit a List/Item">
+      <TitledPane alignment="CENTER" animated="false" text="Edit the List/Edit an Item">
       <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
@@ -72,12 +72,12 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" onAction="#editTitleClicked" text="Edit the title of a list" />
                         <Button mnemonicParsing="false" onAction="#editDescriptionClicked" prefHeight="26.0" prefWidth="167.0" text="Edit description of an item" GridPane.rowIndex="1" />
-                        <Button mnemonicParsing="false" onAction="#addItemClicked" text="Add item to a list" GridPane.columnIndex="1" />
-                        <Button mnemonicParsing="false" onAction="#removeItemClicked" prefHeight="26.0" prefWidth="140.0" text="Remove item from list" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#addItemClicked" text="Add item to list" />
+                        <Button mnemonicParsing="false" onAction="#removeItemClicked" prefHeight="26.0" prefWidth="140.0" text="Remove item from list" GridPane.columnIndex="1" />
                         <Button mnemonicParsing="false" onAction="#editDueDateClicked" text="Edit due date of an Item" GridPane.rowIndex="2" />
-                        <Button mnemonicParsing="false" onAction="#markItemCompleteClicked" text="Mark an item as complete" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Button mnemonicParsing="false" onAction="#markItemCompleteClicked" text="Mark an item as complete" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#clearListClicked" text="Clear the List" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                </children></AnchorPane>

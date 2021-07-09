@@ -7,8 +7,6 @@ package ucf.assignments;
 import java.util.ArrayList;
 
 public class ToDoList {
-    String title; // Title of List
-
     // Name of item, completed or not, item description
     ArrayList<String> itemName = new ArrayList<String>();
     ArrayList<Boolean> status = new ArrayList<Boolean>();
