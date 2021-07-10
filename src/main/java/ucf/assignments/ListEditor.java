@@ -16,12 +16,9 @@ public class ListEditor {
         // remove the name of the item, and remove the description, status, and due date from that index
     }
 
-    public void editDescription(ToDoList list) {
-        // prompt the user for the item name
-        // prompt the user for the new description
-
-        // loop through the list and find the item
-        // replace the description at that index with the new one
+    public void editDescription(Item item, String edited) {
+        // set the item's description to be the new description
+        item.description = edited;
     }
 
     public void editDueDate(ToDoList list) {

@@ -22,6 +22,11 @@ class ListEditorTest {
 
     @Test
     void editDescription() {
+        Item test = new Item(); // new item for test
+        le.editDescription(test, "test"); // set the item's description as "test"
+
+        assertEquals("test", test.description); // check if item's description is as expected after method is called
+
     }
 
     @Test

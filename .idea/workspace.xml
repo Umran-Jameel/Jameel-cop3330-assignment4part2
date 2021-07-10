@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a3309eb-e0b7-4305-a503-f239e05bf4f8" name="Default Changelist" comment="rough draft with new requirements">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ucf/assignments/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+    <list default="true" id="9a3309eb-e0b7-4305-a503-f239e05bf4f8" name="Default Changelist" comment="addItemClicked done, addItem test done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ucf/assignments/ApplicationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ucf/assignments/ApplicationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ucf/assignments/ListEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ucf/assignments/ListEditor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ucf/assignments/ToDoList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ucf/assignments/ToDoList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ucf/assignments/ApplicationControllerTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ucf/assignments/ListEditorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ucf/assignments/ListEditorTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -90,7 +86,7 @@
       <recent name="ucf.assignments" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Jameel-cop3330-assignment4part2 [run]">
+  <component name="RunManager" selected="Gradle.ListEditorTest.editDescription">
     <configuration name="ApplicationControllerTest.addItemClicked" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -154,8 +150,30 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="ListEditorTest.editDescription" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;ucf.assignments.ListEditorTest.editDescription&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.ListEditorTest.editDescription" />
         <item itemvalue="Gradle.Jameel-cop3330-assignment4part2 [run]" />
         <item itemvalue="Gradle.ListEditorTest.addToList" />
         <item itemvalue="Gradle.ApplicationControllerTest.addItemClicked" />
@@ -185,7 +203,14 @@
       <option name="project" value="LOCAL" />
       <updated>1625864362389</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="addItemClicked done, addItem test done">
+      <created>1625880655286</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1625880655286</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -203,6 +228,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="files" />
     <MESSAGE value="rough draft with new requirements" />
-    <option name="LAST_COMMIT_MESSAGE" value="rough draft with new requirements" />
+    <MESSAGE value="addItemClicked done, addItem test done" />
+    <option name="LAST_COMMIT_MESSAGE" value="addItemClicked done, addItem test done" />
   </component>
 </project>

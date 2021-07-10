@@ -5,6 +5,8 @@
 package ucf.assignments;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -13,6 +15,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -34,7 +37,74 @@ public class ApplicationController {
     }
 
     public void editDescriptionClicked(ActionEvent actionEvent) {
-        // edits the description of a selected item in a selected list
+        // ListView to show the user all of the items in the list
+        ListView items = new ListView();
+        for (int i = 0; i < list.list.size(); i++) {
+            items.getItems().add(list.list.get(i).itemName); // add items to list view
+        }
+
+        Text current = new Text(); // Text to show user the current description
+        TextField edited = new TextField(); // Textfield for user to enter new description
+        Button done = new Button("Done"); // button to confirm the new description
+
+        // Tell the user what to do when they see the list view
+        Text instructions = new Text();
+        instructions.setText("Select an item to edit its description.");
+
+
+        // Set the stage with title: edit description
+        Stage stage = new Stage();
+        stage.setTitle("Edit Description of an Item");
+
+        // Vbox with spacing 10, padding 20 all around
+        VBox vb1 = new VBox(10);
+        vb1.setPadding(new Insets(20, 20, 20, 20));
+        vb1.getChildren().addAll(items, instructions); // Add the list view and instructions to the vbox
+
+        // Set the listview scene
+        Scene scene = new Scene(vb1, 500, 500);
+        stage.setScene(scene);
+        stage.show();
+
+        // Handle mouse click of the item the user chooses
+        items.setOnMouseClicked(e -> {
+            // Get the item that the user selected as a string
+            String selected = items.getSelectionModel().getSelectedItem().toString();
+            stage.close(); // close the listview scene, not needed anymore
+
+            // make a new stage for the user to enter the new description
+            Stage descriptionStage = new Stage();
+            descriptionStage.setTitle("Edit Description of Item" + selected); // title of the new stage
+
+            int i;
+            // loop through to find the item in the Arraylist
+            for (i = 0; i < list.list.size(); i++) {
+                if (selected.equals(list.list.get(i).itemName)) {
+                    break;
+                }
+            }
+            // Get the current description of the item ot show to the user
+            current.setText("Current: " + list.list.get(i).description);
+
+            // new Vbox for the description scene, spacing 10, padding 20 all around
+            VBox vb2 = new VBox(10);
+            vb2.setPadding(new Insets(20, 20, 20, 20));
+            vb2.getChildren().addAll(current, edited, done); // add the current description text component, edited textfield, and done button to the vbox
+
+            // make the new scene with the description vbox
+            Scene scene2 = new Scene(vb2, 500, 500);
+            descriptionStage.setScene(scene2);
+            descriptionStage.show();
+
+            int finalI = i; // make the index a final variable
+            // handle the button click of the done button
+            done.setOnAction(event -> {
+                le.editDescription(list.list.get(finalI), edited.getText()); // add the new description to the item's index in the to do list
+                descriptionStage.close();
+            });
+
+        });
+
     }
 
     public void addItemClicked(ActionEvent actionEvent) {
@@ -53,7 +123,7 @@ public class ApplicationController {
         vb.getChildren().addAll(textField, button, closeButton);
 
         // layout of the scene
-        Scene scene = new Scene(vb, 350, 200);
+        Scene scene = new Scene(vb, 500, 500);
         stage.setScene(scene);
         stage.show();
 
@@ -92,5 +162,6 @@ public class ApplicationController {
     }
 
     public void clearListClicked(ActionEvent actionEvent) {
+
     }
 }
