@@ -7,28 +7,31 @@ package ucf.assignments;
 import java.util.ArrayList;
 
 public class Display {
-    public ArrayList<String> displayAllItems(ToDoList list) {
-        // copy the contents of the array list of items in the to do list (in the arguments: list)
-
-        // return the copied array list
-        return null;
-    }
-
     public ArrayList<String> displayCompleted(ToDoList list) {
-        // loop through the array list of items in the ToDoList list
-            // check if the item is completed by checking the status at that index
-        // copy all the completed items to a new array list
+        ArrayList<String> ret = new ArrayList<>();
 
-        // return the copied list
-        return null;
+        // loop through the items
+        for (int i = 0; i < list.list.size(); i++) {
+            // if the item is completed
+            if (list.list.get(i).status) {
+                ret.add(list.list.get(i).itemName); // add the item to the array list to be returned
+            }
+        }
+
+        return ret;
     }
 
     public ArrayList<String> displayIncomplete(ToDoList list) {
-        // loop through the array list of items in the ToDoList list
-            // check if the item is not complete by checking the status at that index
-        // copy all the incomplete items to a new array list
+        ArrayList<String> ret = new ArrayList<>();
 
-        // return the copied list
-        return null;
+        // loop through the items
+        for (int i = 0; i < list.list.size(); i++) {
+            // if the item is completed
+            if (!list.list.get(i).status) {
+                ret.add(list.list.get(i).itemName); // add the item to the array list to be returned
+            }
+        }
+
+        return ret;
     }
 }

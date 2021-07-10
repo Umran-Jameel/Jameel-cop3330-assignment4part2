@@ -28,6 +28,7 @@ import java.util.ArrayList;
 public class ApplicationController {
     ToDoList list = new ToDoList();
     ListEditor le = new ListEditor();
+    Display display = new Display();
 
     public void saveListToStorageClicked(ActionEvent actionEvent) {
         // saves a desired list to storage as a text file
@@ -216,12 +217,76 @@ public class ApplicationController {
     }
 
     public void displayIncompleteClicked(ActionEvent actionEvent) {
+        ArrayList<String> incomplete; // new arraylist to get all the completed items
+        incomplete = display.displayIncomplete(list); // taking the list and getting the completed items
+
+        // ListView to show the user all of the incomplete items in the list
+        ListView items = new ListView();
+        for (int i = 0; i < incomplete.size(); i++) {
+            items.getItems().add(incomplete.get(i)); // add the items to the listview
+        }
+
+        // stage to show the listview
+        Stage stage = new Stage();
+        stage.setTitle("Incomplete Items");
+
+        // using vbox for the scene, spacing 10, padding 20 each
+        VBox vb1 = new VBox(10);
+        vb1.setPadding(new Insets(20, 20, 20, 20));
+        vb1.getChildren().addAll(items); // Add the list view and instructions to the vbox
+
+        // Set the listview scene
+        Scene scene = new Scene(vb1, 500, 500);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void displayAllClicked(ActionEvent actionEvent) {
+        // ListView to show the user all of the items in the list
+        ListView items = new ListView();
+        for (int i = 0; i < list.list.size(); i++) {
+            items.getItems().add(list.list.get(i).itemName); // add all items to list view
+        }
+
+        // stage for listview
+        Stage stage = new Stage();
+        stage.setTitle("All Items");
+
+        // using vbox for the scene, spacing 10, padding 20 each
+        VBox vb1 = new VBox(10);
+        vb1.setPadding(new Insets(20, 20, 20, 20));
+        vb1.getChildren().addAll(items); // Add the list view and instructions to the vbox
+
+        // Set the listview scene
+        Scene scene = new Scene(vb1, 500, 500);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void displayCompleteClicked(ActionEvent actionEvent) {
+        ArrayList<String> completed;  // new arraylist to get all the completed items
+        completed = display.displayCompleted(list); // taking the list and getting the completed items
+
+        // ListView to show the user all of the completed items in the list
+        ListView items = new ListView();
+        for (int i = 0; i < completed.size(); i++) {
+            items.getItems().add(completed.get(i)); // add the items to the listview
+        }
+
+
+        // stage for listview
+        Stage stage = new Stage();
+        stage.setTitle("Completed Items");
+
+        // using vbox for the scene, spacing 10, padding 20 each
+        VBox vb1 = new VBox(10);
+        vb1.setPadding(new Insets(20, 20, 20, 20));
+        vb1.getChildren().addAll(items); // Add the list view and instructions to the vbox
+
+        // Set the listview scene
+        Scene scene = new Scene(vb1, 500, 500);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void clearListClicked(ActionEvent actionEvent) {
