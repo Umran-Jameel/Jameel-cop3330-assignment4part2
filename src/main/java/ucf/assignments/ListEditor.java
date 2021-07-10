@@ -5,12 +5,9 @@
 package ucf.assignments;
 
 public class ListEditor {
-    public void addToList(ToDoList list) {
-        // prompt the user for item name, description, and due date
-        // add the item name to the Array List of items (String) in the list
-        // add the description to the description Array List at the same index
-        // add the date to the date Array Lists at the same index
-        // set the status to incomplete
+    public void addToList(ToDoList list, String name) {
+        Item item = new Item(); // making a new item
+        item.itemName = name; // item name is what the user entered
     }
 
     public void removeFromList(ToDoList list) {
