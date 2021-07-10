@@ -99,8 +99,15 @@ public class ApplicationController {
             int finalI = i; // make the index a final variable
             // handle the button click of the done button
             done.setOnAction(event -> {
-                le.editDescription(list.list.get(finalI), edited.getText()); // add the new description to the item's index in the to do list
-                descriptionStage.close();
+                // if the entered description is not between 1 and 256 characters in length
+                if ((edited.getText().length() == 0) || edited.getText().length() > 256) {
+                    descriptionStage.setTitle("Description should be between 1 and 256 characters in length."); // let the user know of their mistake
+                    edited.clear(); // clear the text field for the user to enter again
+                }
+                else {
+                    le.editDescription(list.list.get(finalI), edited.getText()); // add the new description to the item's index in the to do list
+                    descriptionStage.close();
+                }
             });
 
         });
