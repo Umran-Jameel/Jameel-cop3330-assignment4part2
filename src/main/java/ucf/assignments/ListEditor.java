@@ -4,21 +4,35 @@
  */
 package ucf.assignments;
 
+import java.util.ArrayList;
+
 public class ListEditor {
     public void addToList(ToDoList list, String name) {
-        Item item = new Item(); // making a new item
-        item.itemName = name; // item name is what the user entered
+        Item item = new Item(); // new item being instantiated
+        item.itemName = name; // setting the itemName
+        list.list.add(item); // add the item
     }
 
-    public void removeFromList(ToDoList list) {
-        // prompt the user for the name of the item to be removed
-        // loop the though the Array List of item names to find the item to be removed
-        // remove the name of the item, and remove the description, status, and due date from that index
+    public void removeFromList(ToDoList list, String toBeRemoved) {
+        // loop to find the item to be removed in the list
+        for (int i = 0; i < list.list.size(); i++) {
+            // if the item is found
+            if (toBeRemoved.equals(list.list.get(i).itemName)) {
+                list.list.remove(i); // remove the item
+                break;
+            }
+        }
     }
 
-    public void editDescription(Item item, String edited) {
-        // set the item's description to be the new description
-        item.description = edited;
+    public void editDescription(ToDoList list, String selected, String edited) {
+        // loop to find the item to be edited in the list
+        for (int i = 0; i < list.list.size(); i++) {
+            // if the item is found
+            if (selected.equals(list.list.get(i).itemName)) {
+                list.list.get(i).description = edited; // edit the item
+                break;
+            }
+        }
     }
 
     public void editDueDate(ToDoList list) {

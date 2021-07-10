@@ -12,6 +12,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -60,6 +61,7 @@ public class ApplicationController {
         VBox vb1 = new VBox(10);
         vb1.setPadding(new Insets(20, 20, 20, 20));
         vb1.getChildren().addAll(items, instructions); // Add the list view and instructions to the vbox
+        vb1.setAlignment(Pos.TOP_CENTER);
 
         // Set the listview scene
         Scene scene = new Scene(vb1, 500, 500);
@@ -74,7 +76,7 @@ public class ApplicationController {
 
             // make a new stage for the user to enter the new description
             Stage descriptionStage = new Stage();
-            descriptionStage.setTitle("Edit Description of Item" + selected); // title of the new stage
+            descriptionStage.setTitle("Edit Description of Item " + selected); // title of the new stage
 
             int i;
             // loop through to find the item in the Arraylist
@@ -90,9 +92,10 @@ public class ApplicationController {
             VBox vb2 = new VBox(10);
             vb2.setPadding(new Insets(20, 20, 20, 20));
             vb2.getChildren().addAll(current, edited, done); // add the current description text component, edited textfield, and done button to the vbox
+            vb2.setAlignment(Pos.TOP_CENTER);
 
             // make the new scene with the description vbox
-            Scene scene2 = new Scene(vb2, 500, 500);
+            Scene scene2 = new Scene(vb2, 500, 130);
             descriptionStage.setScene(scene2);
             descriptionStage.show();
 
@@ -105,7 +108,7 @@ public class ApplicationController {
                     edited.clear(); // clear the text field for the user to enter again
                 }
                 else {
-                    le.editDescription(list.list.get(finalI), edited.getText()); // add the new description to the item's index in the to do list
+                    le.editDescription(list, selected, edited.getText()); // add the new description
                     descriptionStage.close();
                 }
             });
@@ -128,19 +131,18 @@ public class ApplicationController {
         VBox vb = new VBox(10);
         vb.setPadding(new Insets(20, 20, 20, 20));
         vb.getChildren().addAll(textField, button, closeButton);
+        vb.setAlignment(Pos.TOP_CENTER);
 
         // layout of the scene
-        Scene scene = new Scene(vb, 500, 500);
+        Scene scene = new Scene(vb, 500, 130);
         stage.setScene(scene);
         stage.show();
 
         // Once the add button is clicked, add the item to the list, and tell user to close
         EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                stage.setTitle("Added List! Press Close to close");
-                Item item = new Item();
-                item.itemName = textField.getText();
-                list.list.add(item);
+                stage.setTitle("Added item to list! Press Close to close");
+                le.addToList(list, textField.getText());
             }
         };
         // setting the onAction for the buttons
@@ -149,6 +151,60 @@ public class ApplicationController {
     }
 
     public void removeItemClicked(ActionEvent actionEvent) {
+        // ListView to show the user all of the items in the list
+        ListView items = new ListView();
+        for (int i = 0; i < list.list.size(); i++) {
+            items.getItems().add(list.list.get(i).itemName); // add items to list view
+        }
+
+        // Tell the user what to do when they see the list view
+        Text instructions = new Text();
+        instructions.setText("Select an item to remove.");
+
+
+        // Set the stage with title: Remove Item
+        Stage stage = new Stage();
+        stage.setTitle("Remove Item");
+
+        // Vbox with spacing 10, padding 20 all around
+        VBox vb1 = new VBox(10);
+        vb1.setPadding(new Insets(20, 20, 20, 20));
+        vb1.getChildren().addAll(items, instructions); // Add the list view and instructions to the vbox
+        vb1.setAlignment(Pos.TOP_CENTER);
+
+        // Set the listview scene
+        Scene scene = new Scene(vb1, 500, 500);
+        stage.setScene(scene);
+        stage.show();
+
+        items.setOnMouseClicked(e -> {
+            // Get the item that the user selected as a string
+            String selected = items.getSelectionModel().getSelectedItem().toString();
+
+            le.removeFromList(list, selected); // remove the selected list
+
+            stage.close(); // close the listview stage
+
+            // new stage for confirmation that the item was removed
+            Stage confirmation = new Stage();
+            confirmation.setTitle("Successfully removed item " + selected);
+
+            // close button to close the confirmation window
+            Button closeButton = new Button("Close");
+
+            // new Vbox for confirmation dialog, spacing 10, padding 20 all around
+            VBox vb2 = new VBox(10);
+            vb2.setPadding(new Insets(20, 20, 20, 20));
+            vb2.getChildren().add(closeButton); // Add the close button to the vbox
+            vb2.setAlignment(Pos.CENTER);
+
+            // Set the listview scene
+            Scene scene2 = new Scene(vb2, 400, 100);
+            confirmation.setScene(scene2);
+            confirmation.show();
+
+            closeButton.setOnAction(event -> confirmation.close());
+        });
     }
 
     public void editDueDateClicked(ActionEvent actionEvent) {

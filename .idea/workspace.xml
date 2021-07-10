@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a3309eb-e0b7-4305-a503-f239e05bf4f8" name="Default Changelist" comment="editDescriptionClick handled, editDescription and test done">
+    <list default="true" id="9a3309eb-e0b7-4305-a503-f239e05bf4f8" name="Default Changelist" comment="description to be between 1 and 256 characters in length">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ucf/assignments/ApplicationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ucf/assignments/ApplicationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ucf/assignments/ListEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ucf/assignments/ListEditor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ucf/assignments/ListEditorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ucf/assignments/ListEditorTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +86,7 @@
       <recent name="ucf.assignments" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Jameel-cop3330-assignment4part2 [run]">
+  <component name="RunManager" selected="Gradle.ListEditorTest.removeFromList">
     <configuration name="ApplicationControllerTest.addItemClicked" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -169,10 +171,32 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="ListEditorTest.removeFromList" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;ucf.assignments.ListEditorTest.removeFromList&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.Jameel-cop3330-assignment4part2 [run]" />
+        <item itemvalue="Gradle.ListEditorTest.removeFromList" />
         <item itemvalue="Gradle.ListEditorTest.editDescription" />
+        <item itemvalue="Gradle.Jameel-cop3330-assignment4part2 [run]" />
         <item itemvalue="Gradle.ListEditorTest.addToList" />
         <item itemvalue="Gradle.ApplicationControllerTest.addItemClicked" />
       </list>
@@ -215,7 +239,14 @@
       <option name="project" value="LOCAL" />
       <updated>1625938903207</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="description to be between 1 and 256 characters in length">
+      <created>1625939603024</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1625939603024</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -235,6 +266,7 @@
     <MESSAGE value="rough draft with new requirements" />
     <MESSAGE value="addItemClicked done, addItem test done" />
     <MESSAGE value="editDescriptionClick handled, editDescription and test done" />
-    <option name="LAST_COMMIT_MESSAGE" value="editDescriptionClick handled, editDescription and test done" />
+    <MESSAGE value="description to be between 1 and 256 characters in length" />
+    <option name="LAST_COMMIT_MESSAGE" value="description to be between 1 and 256 characters in length" />
   </component>
 </project>
