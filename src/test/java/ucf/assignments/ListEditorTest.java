@@ -8,15 +8,14 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ListEditorTest {
-    ListEditor le = new ListEditor();
-    ToDoList list = new ToDoList();
+    ListEditor listEditor = new ListEditor();
+    ToDoList toDoList = new ToDoList();
 
     @Test
     void addToList() {
         Item test = new Item(); // instantiating a new item for test
-        test.itemName = "test"; // this item's name will be test
-        list.list.add(test); // we add it to the test list
-        assertEquals("test", list.list.get(0).itemName); // check to see if it has been added properly
+        listEditor.addToList(toDoList, "test"); // add to list a test item
+        assertEquals("test", toDoList.list.get(0).itemName); // check to see if it has been added properly
     }
 
     @Test
@@ -26,19 +25,19 @@ class ListEditorTest {
         Item toAdd = new Item();
         toAdd.itemName = "toAdd";
 
-        list.list.add(toAdd); // adding an item to remove it
+        toDoList.list.add(toAdd); // adding an item to remove it
 
-        le.removeFromList(list, "toAdd"); // remove the item
+        listEditor.removeFromList(toDoList, "toAdd"); // remove the item
 
-        assertEquals(test, list.list);
+        assertEquals(test, toDoList.list);
     }
 
     @Test
     void editDescription() {
         Item test = new Item(); // new item for test
         test.description = "test";
-        list.list.add(test); // add the item to a list
-        le.editDescription(list, "test", "test"); // set the item's description as "test"
+        toDoList.list.add(test); // add the item to a list
+        listEditor.editDescription(toDoList, "test", "test"); // set the item's description as "test"
 
         assertEquals("test", test.description); // check if item's description is as expected after method is called
 
@@ -50,20 +49,58 @@ class ListEditorTest {
 
     @Test
     void markAsComplete() {
+        // making a new item with the status incomplete, index 0
+        Item item = new Item();
+        item.status = false;
+
+        toDoList.list.add(item); // add the item to the list
+        listEditor.markAsComplete(toDoList, 0); // mark the item as complete using the function
+
+        assertEquals(true, toDoList.list.get(0).status); // check if the new status is true as expected
+    }
+
+    @Test
+    void markAsIncomplete() {
+        // making a new item with the status completed, index 0
+        Item item = new Item();
+        item.status = true;
+
+        toDoList.list.add(item); // add the item to the list
+        listEditor.markAsInComplete(toDoList, 0); // mark the item as complete using the function
+
+        assertEquals(false, toDoList.list.get(0).status); // check if the new status is true as expected
     }
 
     @Test
     void clearList() {
         // adding an item to be cleared
         Item test1 = new Item();
-        list.list.add(test1);
+        toDoList.list.add(test1);
 
         // adding a second item to be cleared
         Item test2 = new Item();
-        list.list.add(test2);
+        toDoList.list.add(test2);
 
-        le.clearList(list); // clear the list
+        listEditor.clearList(toDoList); // clear the list
 
-        assertEquals(0, list.list.size()); // size of the list should be zero
+        assertEquals(0, toDoList.list.size()); // size of the list should be zero
+    }
+
+    @Test
+    void findIndex() {
+        // new item with name no name (not the one to find)
+        Item item = new Item();
+        item.itemName = "no name";
+
+        // new item with name findIndex
+        Item item2 = new Item();
+        item2.itemName = "findIndex";
+
+        toDoList.list.add(item); // add the item, will be index 0
+        toDoList.list.add(item2); // add the item2, will be index 1 (to be found)
+
+        int actual = listEditor.findIndex(toDoList, "findIndex"); // find the index of the item
+
+        assertEquals(01, actual);
     }
 }

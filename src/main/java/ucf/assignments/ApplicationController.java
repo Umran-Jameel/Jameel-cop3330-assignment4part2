@@ -16,6 +16,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -26,8 +27,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ApplicationController {
-    ToDoList list = new ToDoList();
-    ListEditor le = new ListEditor();
+    ToDoList toDoList = new ToDoList();
+    ListEditor listEditor = new ListEditor();
     Display display = new Display();
 
     public void saveListToStorageClicked(ActionEvent actionEvent) {
@@ -41,8 +42,8 @@ public class ApplicationController {
     public void editDescriptionClicked(ActionEvent actionEvent) {
         // ListView to show the user all of the items in the list
         ListView items = new ListView();
-        for (int i = 0; i < list.list.size(); i++) {
-            items.getItems().add(list.list.get(i).itemName); // add items to list view
+        for (int i = 0; i < toDoList.list.size(); i++) {
+            items.getItems().add(toDoList.list.get(i).itemName); // add items to list view
         }
 
         Text current = new Text(); // Text to show user the current description
@@ -81,13 +82,13 @@ public class ApplicationController {
 
             int i;
             // loop through to find the item in the Arraylist
-            for (i = 0; i < list.list.size(); i++) {
-                if (selected.equals(list.list.get(i).itemName)) {
+            for (i = 0; i < toDoList.list.size(); i++) {
+                if (selected.equals(toDoList.list.get(i).itemName)) {
                     break;
                 }
             }
             // Get the current description of the item ot show to the user
-            current.setText("Current: " + list.list.get(i).description);
+            current.setText("Current: " + toDoList.list.get(i).description);
 
             // new Vbox for the description scene, spacing 10, padding 20 all around
             VBox vb2 = new VBox(10);
@@ -109,7 +110,7 @@ public class ApplicationController {
                     edited.clear(); // clear the text field for the user to enter again
                 }
                 else {
-                    le.editDescription(list, selected, edited.getText()); // add the new description
+                    listEditor.editDescription(toDoList, selected, edited.getText()); // add the new description
                     descriptionStage.close();
                 }
             });
@@ -143,7 +144,7 @@ public class ApplicationController {
         EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 stage.setTitle("Added item to list! Press Close to close");
-                le.addToList(list, textField.getText());
+                listEditor.addToList(toDoList, textField.getText());
             }
         };
         // setting the onAction for the buttons
@@ -154,8 +155,8 @@ public class ApplicationController {
     public void removeItemClicked(ActionEvent actionEvent) {
         // ListView to show the user all of the items in the list
         ListView items = new ListView();
-        for (int i = 0; i < list.list.size(); i++) {
-            items.getItems().add(list.list.get(i).itemName); // add items to list view
+        for (int i = 0; i < toDoList.list.size(); i++) {
+            items.getItems().add(toDoList.list.get(i).itemName); // add items to list view
         }
 
         // Tell the user what to do when they see the list view
@@ -182,7 +183,7 @@ public class ApplicationController {
             // Get the item that the user selected as a string
             String selected = items.getSelectionModel().getSelectedItem().toString();
 
-            le.removeFromList(list, selected); // remove the selected list
+            listEditor.removeFromList(toDoList, selected); // remove the selected list
 
             stage.close(); // close the listview stage
 
@@ -209,16 +210,94 @@ public class ApplicationController {
     }
 
     public void editDueDateClicked(ActionEvent actionEvent) {
-        // edits the due date of a selected item in a desired list
+        System.out.println(toDoList.list.get(0).status);
     }
 
     public void markItemCompleteClicked(ActionEvent actionEvent) {
-        // marks a selected item as complete in a desired list
+        // ListView to show the user all of the items in the list
+        ListView items = new ListView();
+        for (int i = 0; i < toDoList.list.size(); i++) {
+            items.getItems().add(toDoList.list.get(i).itemName); // add items to list view
+        }
+
+
+        // Tell the user what to do when they see the list view
+        Text instructions = new Text();
+        instructions.setText("Select an item to mark it as complete.");
+
+
+        // Set the stage with title: mark an item as complete
+        Stage stage = new Stage();
+        stage.setTitle("Mark an item as complete");
+
+        // Vbox with spacing 10, padding 20 all around
+        VBox vb1 = new VBox(10);
+        vb1.setPadding(new Insets(20, 20, 20, 20));
+        vb1.getChildren().addAll(items, instructions); // Add the list view and instructions to the vbox
+        vb1.setAlignment(Pos.TOP_CENTER);
+
+        // Set the listview scene
+        Scene scene = new Scene(vb1, 500, 500);
+        stage.setScene(scene);
+        stage.show();
+
+        items.setOnMouseClicked(e -> {
+            String selected = items.getSelectionModel().getSelectedItem().toString(); // get the selected item in string form
+
+            CheckBox status = new CheckBox(); // checkbox to make an item complete
+
+            // text to show user item they selected
+            Text itemName = new Text();
+            itemName.setText(selected);
+
+            Text confirmation = new Text(); // text to let use know the status of the item
+
+
+            // new stage, the one where the user will mark the item as complete
+            Stage stage2 = new Stage();
+
+            // Vbox with spacing 10, padding 20 all around
+            VBox vb2 = new VBox(10);
+            vb2.setPadding(new Insets(20, 20, 20, 20));
+            vb2.getChildren().addAll(itemName, status, confirmation); // item name text, checkbox, and confirmation to the user add to box
+            vb2.setAlignment(Pos.CENTER);
+
+            // set the scene, 100 x 100
+            Scene scene2 = new Scene(vb2, 100, 100);
+            stage2.setScene(scene2);
+            stage2.show();
+
+
+            int index = listEditor.findIndex(toDoList, selected); // finding the index of the selected item in the list
+
+            // if the item is already complete
+            if (toDoList.list.get(index).status) {
+                status.setSelected(true); // the checkbox will be checked
+                confirmation.setText("Complete!"); // the user will know that the item is complete
+            }
+            else {
+                status.setSelected(false); // the checkbox will not be checked
+                confirmation.setText("Incomplete");
+            }
+
+            // handling the checkbox being checked or unchecked
+            status.setOnAction(event -> {
+                // if the checkbox is checked by the user
+                if (status.isSelected()) {
+                    listEditor.markAsComplete(toDoList, index); // mark the item as complete (boolean status -> true)
+                    confirmation.setText("Complete!"); // confirmation for the user
+                }
+                else {
+                    listEditor.markAsInComplete(toDoList, index); // the item is marked as Incomplete
+                    confirmation.setText("Incomplete"); // confirmation for the user
+                }
+            });
+        });
     }
 
     public void displayIncompleteClicked(ActionEvent actionEvent) {
         ArrayList<String> incomplete; // new arraylist to get all the completed items
-        incomplete = display.displayIncomplete(list); // taking the list and getting the completed items
+        incomplete = display.displayIncomplete(toDoList); // taking the list and getting the completed items
 
         // ListView to show the user all of the incomplete items in the list
         ListView items = new ListView();
@@ -244,8 +323,8 @@ public class ApplicationController {
     public void displayAllClicked(ActionEvent actionEvent) {
         // ListView to show the user all of the items in the list
         ListView items = new ListView();
-        for (int i = 0; i < list.list.size(); i++) {
-            items.getItems().add(list.list.get(i).itemName); // add all items to list view
+        for (int i = 0; i < toDoList.list.size(); i++) {
+            items.getItems().add(toDoList.list.get(i).itemName); // add all items to list view
         }
 
         // stage for listview
@@ -265,7 +344,7 @@ public class ApplicationController {
 
     public void displayCompleteClicked(ActionEvent actionEvent) {
         ArrayList<String> completed;  // new arraylist to get all the completed items
-        completed = display.displayCompleted(list); // taking the list and getting the completed items
+        completed = display.displayCompleted(toDoList); // taking the list and getting the completed items
 
         // ListView to show the user all of the completed items in the list
         ListView items = new ListView();
@@ -290,7 +369,7 @@ public class ApplicationController {
     }
 
     public void clearListClicked(ActionEvent actionEvent) {
-        le.clearList(list); // clear the list
+        listEditor.clearList(toDoList); // clear the list
 
         // stage to tell user the list has been cleared
         Stage stage = new Stage();

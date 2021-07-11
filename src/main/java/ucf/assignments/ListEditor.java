@@ -7,49 +7,67 @@ package ucf.assignments;
 import java.util.ArrayList;
 
 public class ListEditor {
-    public void addToList(ToDoList list, String name) {
+    public void addToList(ToDoList toDoList, String name) {
         Item item = new Item(); // new item being instantiated
         item.itemName = name; // setting the itemName
-        list.list.add(item); // add the item
+        toDoList.list.add(item); // add the item
     }
 
-    public void removeFromList(ToDoList list, String toBeRemoved) {
+    public void removeFromList(ToDoList toDoList, String toBeRemoved) {
         // loop to find the item to be removed in the list
-        for (int i = 0; i < list.list.size(); i++) {
+        for (int i = 0; i < toDoList.list.size(); i++) {
             // if the item is found
-            if (toBeRemoved.equals(list.list.get(i).itemName)) {
-                list.list.remove(i); // remove the item
+            if (toBeRemoved.equals(toDoList.list.get(i).itemName)) {
+                toDoList.list.remove(i); // remove the item
                 break;
             }
         }
     }
 
-    public void editDescription(ToDoList list, String selected, String edited) {
+    public void editDescription(ToDoList toDoList, String selected, String edited) {
         // loop to find the item to be edited in the list
-        for (int i = 0; i < list.list.size(); i++) {
+        for (int i = 0; i < toDoList.list.size(); i++) {
             // if the item is found
-            if (selected.equals(list.list.get(i).itemName)) {
-                list.list.get(i).description = edited; // edit the item
+            if (selected.equals(toDoList.list.get(i).itemName)) {
+                toDoList.list.get(i).description = edited; // edit the item
                 break;
             }
         }
     }
 
-    public void editDueDate(ToDoList list) {
+    public void editDueDate(ToDoList toDoList) {
         // prompt the user for the item name
         // loop though and find the item in the list's ArrayList for names
         // prompt the user for the day, month, and year
         // replace the date information with the new info at that index
     }
 
-    public void markAsComplete(ToDoList list) {
-        // prompt the user for the item name
-        // loop though and find the item in the list's ArrayList for names
+    public void markAsComplete(ToDoList toDoList, int index) {
+        // index was already found in controller class function
+        // use index and set the item to completed
+        toDoList.list.get(index).status = true;
 
-        // mark the status at that index as true
     }
 
-    public void clearList(ToDoList list) {
-        list.list.clear(); // clear the list
+    public void markAsInComplete(ToDoList toDoList, int index) {
+        // index was already found in controller class function
+        // use index and set the item to incomplete
+        toDoList.list.get(index).status = false;
+    }
+
+    public void clearList(ToDoList toDoList) {
+        toDoList.list.clear(); // clear the list
+    }
+
+    public int findIndex(ToDoList toDoList, String toFind) {
+        int ret;
+        // loop through to find the item's index
+        for (ret = 0; ret < toDoList.list.size(); ret++) {
+            // if the item is found (strings equal each other)
+            if (toFind.equals(toDoList.list.get(ret).itemName)) {
+                return ret;
+            }
+        }
+        return 0;
     }
 }
