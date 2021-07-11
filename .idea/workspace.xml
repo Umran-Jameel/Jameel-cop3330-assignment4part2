@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a3309eb-e0b7-4305-a503-f239e05bf4f8" name="Default Changelist" comment="remove item functions and test, optimizations of add item and edit description">
+    <list default="true" id="9a3309eb-e0b7-4305-a503-f239e05bf4f8" name="Default Changelist" comment="display all, complete, and incomplete along with their tests done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ucf/assignments/ApplicationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ucf/assignments/ApplicationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ucf/assignments/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ucf/assignments/Display.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ucf/assignments/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ucf/assignments/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ucf/assignments/DisplayTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ucf/assignments/DisplayTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ucf/assignments/ListEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ucf/assignments/ListEditor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ucf/assignments/ListEditorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ucf/assignments/ListEditorTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +86,7 @@
       <recent name="ucf.assignments" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Jameel-cop3330-assignment4part2 [run]">
+  <component name="RunManager" selected="Gradle.ListEditorTest.clearList">
     <configuration name="DisplayTest.displayCompleted" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -151,12 +150,12 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="ListEditorTest.editDescription" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ListEditorTest.clearList" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;ucf.assignments.ListEditorTest.editDescription&quot;" />
+        <option name="scriptParameters" value="--tests &quot;ucf.assignments.ListEditorTest.clearList&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -195,11 +194,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.ListEditorTest.clearList" />
         <item itemvalue="Gradle.Jameel-cop3330-assignment4part2 [run]" />
         <item itemvalue="Gradle.DisplayTest.displayIncomplete" />
         <item itemvalue="Gradle.DisplayTest.displayCompleted" />
         <item itemvalue="Gradle.ListEditorTest.removeFromList" />
-        <item itemvalue="Gradle.ListEditorTest.editDescription" />
       </list>
     </recent_temporary>
   </component>
@@ -254,7 +253,14 @@
       <option name="project" value="LOCAL" />
       <updated>1625948206710</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="display all, complete, and incomplete along with their tests done">
+      <created>1625955652186</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1625955652186</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -276,6 +282,7 @@
     <MESSAGE value="editDescriptionClick handled, editDescription and test done" />
     <MESSAGE value="description to be between 1 and 256 characters in length" />
     <MESSAGE value="remove item functions and test, optimizations of add item and edit description" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove item functions and test, optimizations of add item and edit description" />
+    <MESSAGE value="display all, complete, and incomplete along with their tests done" />
+    <option name="LAST_COMMIT_MESSAGE" value="display all, complete, and incomplete along with their tests done" />
   </component>
 </project>

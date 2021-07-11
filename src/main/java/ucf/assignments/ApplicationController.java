@@ -290,6 +290,25 @@ public class ApplicationController {
     }
 
     public void clearListClicked(ActionEvent actionEvent) {
+        le.clearList(list); // clear the list
+
+        // stage to tell user the list has been cleared
+        Stage stage = new Stage();
+        stage.setTitle("List Cleared");
+
+        Text clear = new Text(); // text to confirm the list clearance
+        clear.setText("The list has been cleared.");
+
+        // using vbox for the scene, spacing 10, padding 20 each
+        VBox vb1 = new VBox(10);
+        vb1.setPadding(new Insets(20, 20, 20, 20));
+        vb1.getChildren().addAll(clear); // Add the clear button to the vbox
+        vb1.setAlignment(Pos.CENTER);
+
+        // Set the listview scene
+        Scene scene = new Scene(vb1, 200, 100);
+        stage.setScene(scene);
+        stage.show();
 
     }
 }

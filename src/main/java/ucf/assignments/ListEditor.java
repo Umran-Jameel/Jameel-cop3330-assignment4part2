@@ -50,6 +50,6 @@ public class ListEditor {
     }
 
     public void clearList(ToDoList list) {
-
+        list.list.clear(); // clear the list
     }
 }

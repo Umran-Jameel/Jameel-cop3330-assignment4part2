@@ -2,6 +2,7 @@ package ucf.assignments;
 
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -53,5 +54,16 @@ class ListEditorTest {
 
     @Test
     void clearList() {
+        // adding an item to be cleared
+        Item test1 = new Item();
+        list.list.add(test1);
+
+        // adding a second item to be cleared
+        Item test2 = new Item();
+        list.list.add(test2);
+
+        le.clearList(list); // clear the list
+
+        assertEquals(0, list.list.size()); // size of the list should be zero
     }
 }
