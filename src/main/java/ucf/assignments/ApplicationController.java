@@ -4,27 +4,19 @@
  */
 package ucf.assignments;
 
-import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class ApplicationController {
     ToDoList toDoList = new ToDoList();
@@ -210,7 +202,69 @@ public class ApplicationController {
     }
 
     public void editDueDateClicked(ActionEvent actionEvent) {
-        System.out.println(toDoList.list.get(0).status);
+        // ListView to show the user all of the items in the list
+        ListView items = new ListView();
+        for (int i = 0; i < toDoList.list.size(); i++) {
+            items.getItems().add(toDoList.list.get(i).itemName); // add items to list view
+        }
+
+        Stage stage = new Stage();
+        stage.setTitle("Change the due date of an item");
+
+        Text instructions = new Text("Select an item to change its due date.");
+
+
+        // Vbox with spacing 10, padding 20 all around
+        VBox vb1 = new VBox(10);
+        vb1.setPadding(new Insets(20, 20, 20, 20));
+        vb1.getChildren().addAll(items, instructions); // Add the list view and instructions to the vbox
+        vb1.setAlignment(Pos.TOP_CENTER);
+
+        // Set the listview scene
+        Scene scene = new Scene(vb1, 500, 500);
+        stage.setScene(scene);
+        stage.show();
+
+        // handle the user click of the item
+        items.setOnMouseClicked(event -> {
+            // store the item name of the selected item
+            String selected = items.getSelectionModel().getSelectedItem().toString();
+
+            // date picker for the user to pick a date
+            DatePicker datePicker = new DatePicker();
+            Button changeDueDate = new Button("Change Due Date");
+
+            AtomicInteger index = new AtomicInteger(); // index for reference
+
+
+            Text current = new Text();
+            current.setText("Current due date: " + toDoList.list.get(index.get()).duedate);
+
+            // new stage for selecting a date
+            Stage stage2 = new Stage();
+            stage2.setTitle("Change due date of selected item");
+
+            // Vbox with spacing 10, padding 20 all around
+            VBox vb2 = new VBox(10);
+            vb2.setPadding(new Insets(20, 20, 20, 20));
+            vb2.getChildren().addAll(datePicker, changeDueDate, current); // Add the date picker, change button and current date text to the vbox
+            vb2.setAlignment(Pos.TOP_CENTER);
+
+            // Set the listview scene
+            Scene scene2 = new Scene(vb2, 500, 500);
+            stage2.setScene(scene2);
+            stage2.show();
+
+            // user clicks button, date is stored and item's due date is changed
+            changeDueDate.setOnAction(e -> {
+                LocalDate dueDate = datePicker.getValue();
+                index.set(listEditor.editDueDate(toDoList, dueDate, selected)); // changing the due date and getting the index for the current due date
+                stage2.close();
+            });
+        });
+
+
+
     }
 
     public void markItemCompleteClicked(ActionEvent actionEvent) {

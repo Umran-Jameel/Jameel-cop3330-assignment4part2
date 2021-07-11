@@ -4,6 +4,7 @@
  */
 package ucf.assignments;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ListEditor {
@@ -35,11 +36,12 @@ public class ListEditor {
         }
     }
 
-    public void editDueDate(ToDoList toDoList) {
-        // prompt the user for the item name
-        // loop though and find the item in the list's ArrayList for names
-        // prompt the user for the day, month, and year
-        // replace the date information with the new info at that index
+    public int editDueDate(ToDoList toDoList, LocalDate dueDate, String itemName) {
+        int index = findIndex(toDoList, itemName); // finding the index of the item
+
+        toDoList.list.get(index).duedate = dueDate; // set the due date to be the one the user entered
+
+        return index; // index returned for reference
     }
 
     public void markAsComplete(ToDoList toDoList, int index) {

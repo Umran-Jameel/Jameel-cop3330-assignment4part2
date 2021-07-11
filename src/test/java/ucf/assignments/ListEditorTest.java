@@ -3,7 +3,9 @@ package ucf.assignments;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Array;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -45,6 +47,19 @@ class ListEditorTest {
 
     @Test
     void editDueDate() {
+        // new item for test with name "item"
+        Item item = new Item();
+        item.itemName = "item";
+
+        LocalDate date = LocalDate.of(2021, 7, 11); // setting the date for comparison
+        LocalDate expected =  LocalDate.of(2021, 7, 11);
+
+        toDoList.list.add(item); // add the item to the list
+
+        listEditor.editDueDate(toDoList, date, "item"); // change the due date of the item
+
+        assertEquals(expected, item.duedate); // check if the due date of the item was set
+
     }
 
     @Test

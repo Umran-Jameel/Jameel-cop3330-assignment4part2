@@ -1,11 +1,11 @@
 package ucf.assignments;
 
+import java.time.LocalDate;
+
 public class Item {
     String itemName;
     String description = null;
     Boolean status = false;
 
-    Integer year = null;
-    Integer month = null;
-    Integer day = null;
+    LocalDate duedate;
 }

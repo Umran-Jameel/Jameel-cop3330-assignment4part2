@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a3309eb-e0b7-4305-a503-f239e05bf4f8" name="Default Changelist" comment="clear list and test done">
+    <list default="true" id="9a3309eb-e0b7-4305-a503-f239e05bf4f8" name="Default Changelist" comment="mark as complete and tests done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ucf/assignments/ApplicationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ucf/assignments/ApplicationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ucf/assignments/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ucf/assignments/Item.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ucf/assignments/ListEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ucf/assignments/ListEditor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ucf/assignments/ListEditorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ucf/assignments/ListEditorTest.java" afterDir="false" />
     </list>
@@ -86,7 +87,7 @@
       <recent name="ucf.assignments" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.ListEditorTest.findIndex">
+  <component name="RunManager" selected="Gradle.Jameel-cop3330-assignment4part2 [run]">
     <configuration name="Jameel-cop3330-assignment4part2 [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -129,12 +130,12 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="ListEditorTest.findIndex" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ListEditorTest.editDueDate" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;ucf.assignments.ListEditorTest.findIndex&quot;" />
+        <option name="scriptParameters" value="--tests &quot;ucf.assignments.ListEditorTest.editDueDate&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -150,12 +151,12 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="ListEditorTest.markAsComplete" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ListEditorTest.findIndex" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;ucf.assignments.ListEditorTest.markAsComplete&quot;" />
+        <option name="scriptParameters" value="--tests &quot;ucf.assignments.ListEditorTest.findIndex&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -194,11 +195,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.ListEditorTest.findIndex" />
-        <item itemvalue="Gradle.ListEditorTest.markAsIncomplete" />
-        <item itemvalue="Gradle.ListEditorTest.markAsComplete" />
         <item itemvalue="Gradle.Jameel-cop3330-assignment4part2 [run]" />
         <item itemvalue="Gradle.ListEditorTest.addToList" />
+        <item itemvalue="Gradle.ListEditorTest.editDueDate" />
+        <item itemvalue="Gradle.ListEditorTest.findIndex" />
+        <item itemvalue="Gradle.ListEditorTest.markAsIncomplete" />
       </list>
     </recent_temporary>
   </component>
@@ -267,7 +268,14 @@
       <option name="project" value="LOCAL" />
       <updated>1625966384829</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="mark as complete and tests done">
+      <created>1626024589872</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1626024589872</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -291,6 +299,7 @@
     <MESSAGE value="remove item functions and test, optimizations of add item and edit description" />
     <MESSAGE value="display all, complete, and incomplete along with their tests done" />
     <MESSAGE value="clear list and test done" />
-    <option name="LAST_COMMIT_MESSAGE" value="clear list and test done" />
+    <MESSAGE value="mark as complete and tests done" />
+    <option name="LAST_COMMIT_MESSAGE" value="mark as complete and tests done" />
   </component>
 </project>
