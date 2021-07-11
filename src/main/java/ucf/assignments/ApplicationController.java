@@ -12,8 +12,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -22,13 +28,46 @@ public class ApplicationController {
     ToDoList toDoList = new ToDoList();
     ListEditor listEditor = new ListEditor();
     Display display = new Display();
+    SaveAndLoader saveAndLoader = new SaveAndLoader();
 
-    public void saveListToStorageClicked(ActionEvent actionEvent) {
-        // saves a desired list to storage as a text file
+    public void saveListToStorageClicked(ActionEvent actionEvent) throws IOException {
+        Stage stage = new Stage(); // stage for the file chooser
+
+        // file chooser to choose the directory
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save list");
+
+        // only text files will be saved
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter(".txt", "*.txt"));
+
+        File textList = fileChooser.showSaveDialog(stage); // the dialog is opened, user chooses where to save file and file name
+        saveAndLoader.saveListToStorage(toDoList, textList); // we write and save the file
+
     }
 
-    public void loadListClicked(ActionEvent actionEvent) {
-        // loads a desired list
+    public void loadListClicked(ActionEvent actionEvent) throws FileNotFoundException {
+        Stage stage = new Stage(); // stage for the file chooser
+
+        // only text files may be opened
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter(".txt", "*.txt"));
+
+        File file = fileChooser.showOpenDialog(stage); // opening the file that the user has chosen
+        saveAndLoader.loadList(toDoList, file); // loading the list and putting the items in the list
+
+        Stage confirmation = new Stage();
+        confirmation.setTitle("List loaded");
+
+        Text confirmationText = new Text("Successfully loaded list!");
+
+        VBox vBox = new VBox();
+        vBox.setPadding(new Insets(20,20,20,20));
+        vBox.getChildren().add(confirmationText);
+
+        Scene scene = new Scene(vBox, 200, 50);
+        confirmation.setScene(scene);
+        confirmation.show();
+
     }
 
     public void editDescriptionClicked(ActionEvent actionEvent) {
@@ -234,11 +273,11 @@ public class ApplicationController {
             DatePicker datePicker = new DatePicker();
             Button changeDueDate = new Button("Change Due Date");
 
-            AtomicInteger index = new AtomicInteger(); // index for reference
+            int index = listEditor.findIndex(toDoList, selected);
 
 
             Text current = new Text();
-            current.setText("Current due date: " + toDoList.list.get(index.get()).duedate);
+            current.setText("Current due date: " + toDoList.list.get(index).duedate);
 
             // new stage for selecting a date
             Stage stage2 = new Stage();
@@ -258,7 +297,7 @@ public class ApplicationController {
             // user clicks button, date is stored and item's due date is changed
             changeDueDate.setOnAction(e -> {
                 LocalDate dueDate = datePicker.getValue();
-                index.set(listEditor.editDueDate(toDoList, dueDate, selected)); // changing the due date and getting the index for the current due date
+                listEditor.editDueDate(toDoList, dueDate, selected); // changing the due date and getting the index for the current due date
                 stage2.close();
             });
         });

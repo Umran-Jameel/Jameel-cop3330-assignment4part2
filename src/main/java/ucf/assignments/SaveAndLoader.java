@@ -4,16 +4,32 @@
  */
 package ucf.assignments;
 
+import java.io.*;
+import java.util.Scanner;
+
 public class SaveAndLoader {
-    public void saveListToStorage(ToDoList list) {
-        // using JavaFX's FileChooser class, prompt the user for the desired location of the file
-        // create the text file
-        // loop through the list and write the items into the text file
-        // save the file
+    public void saveListToStorage(ToDoList toDoList, File file) throws IOException {
+        FileWriter fileWriter = new FileWriter(file); // new file writer to write all the items
+
+        // loop through each item
+        for (int i = 0; i < toDoList.list.size(); i++) {
+            fileWriter.write(toDoList.list.get(i).itemName + "\n"); // write the name of the item to the file
+        }
+
+        fileWriter.close();
     }
 
-    public void loadList() {
-        // use FileChooser to prompt the user for the file they want to load
-        // Display the file for the user
+    public void loadList(ToDoList toDoList, File file) throws FileNotFoundException {
+        // scanner to read the text file
+        Scanner readFile = new Scanner(file);
+
+        // loop through the file
+        while (readFile.hasNextLine()) {
+            // making a new item for each item in the text file
+            Item item = new Item();
+            item.itemName = readFile.nextLine();
+
+            toDoList.list.add(item); // add the item to the list
+        }
     }
 }
