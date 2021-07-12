@@ -1,17 +1,21 @@
 @startuml
 'https://plantuml.com/class-diagram
 class ApplicationController {
- + addNewListClicked(ActionEvent actionEvent): void
- + removeExistingListCLicked(ActionEvent actionEvent) : void
+ ToDoList toDoList
+ ListEditor listEditor
+ Display display
+ SaveAndLoader saveAndLoader
  + saveListToStorageClicked(ActionEvent actionEvent) : void
- + saveAllListsCLicked(ActionEvent actionEvent) : void
  + loadListClicked(ActionEvent actionEvent) : void
- + editTitleClicked(ActionEvent actionEvent) : void
  + editDescriptionClicked(ActionEvent actionEvent) : void
  + addItemClicked(ActionEvent actionEvent) : void
  + removeItemCLicked(ActionEvent actionEvent) : void
  + editDueDateClicked(ActionEvent actionEvent) : void
  + markItemCompleteClicked(ActionEvent actionEvent) : void
+ + displayIncompleteClicked(ActionEvent actionEvent) : void
+ + displayAllClicked(ActionEvent actionEvent) : void
+ + displayCompleteClicked(ActionEvent actionEvent) : void
+ + clearListClicked(ActionEvent actionEvent) : void
 }
 
 class ListAssignment {
@@ -20,48 +24,42 @@ class ListAssignment {
 }
 
 class Display {
- + displayAllItems(ToDoList list) : ArrayList<String>
- + displayCompleted(ToDoList list) : ArrayList<String>
- + displayIncomplete(ToDoList list) : ArrayList<String>
+ + displayCompleted(ToDoList toDoList) : ArrayList<String>
+ + displayIncomplete(ToDoList toDoList) : ArrayList<String>
 }
 
 class ListEditor{
- + editTitle(ToDoList list) : void
- + addToList(ToDoList list) : void
- + removeFromList(ToDoList list) : void
- + editDesrciption(ToDoList list) : void
- + editDueDate(ToDoList list) : void
- + markAsCompleted(ToDoList list) : void
-}
-
-class ListOfToDoLists {
- ArrayList<ToDoList> arr
-}
-
-class SaveAndLoader {
- + saveListToStorage(ToDoList list) : void
- + saveAllListsToStorage(ListOfToDoLists list) : void
- + loadList() : void
- + loadMultipleLists() : void
+ + addToList(ToDoList toDoList, String name) : void
+ + removeFromList(ToDoList toDoList, String toBeRemoved) : void
+ + editDesrciption(ToDoList toDoList, String selected, String edited) : void
+ + editDueDate(ToDoList toDoList, LocalDate dueDate, String itemName) : void
+ + markAsComplete(ToDoList toDoList, int index) : void
+ + markAsInComplete(ToDoList toDoList, int index) : void
+ + clearList(ToDoList toDoList)
+ + findIndex(ToDoList toDoList, String toFind) : int
 }
 
 class ToDoList {
- String title
- ArrayList<String> itemName
- ArrayList<Boolean> status
- ArrayList<String> description
- ArrayList<Integer> year
- ArrayList<Integer> month
- ArrayList<Integer> day
- ListEditor le
+ ArrayList<Item> arr
+}
+
+class SaveAndLoader {
+ + saveListToStorage(ToDoList toDoList, File file) : void
+ + loadList(ToDoList toDoList, File file) : void
+}
+
+class Item {
+ String itemName
+ Boolean status
+ String description
+ LocalDate dueDate
 }
 
 javafx.Application <|-- ListAssignment
 ApplicationController -- ListAssignment
-ToDoList"100..*" --* "contains"ListOfToDoLists
-ToDoList <.. ListOfToDoLists
-ToDoList --"uses" Display
-ToDoList -- "uses" ListEditor
-javafx.Application"contains" *-- ListOfToDoLists
-javafx.Application *-- "uses"SaveAndLoader
+ApplicationController"1" --* "contains"ToDoList
+ToDoList "100..*"--* "contains" Item
+ApplicationController *-- "uses"SaveAndLoader
+ApplicationController *-- "uses"Display
+ApplicationController *-- "uses"ListEditor
 @enduml
