@@ -11,5 +11,5 @@ public class Item {
     String description = null;
     Boolean status = false;
 
-    LocalDate duedate;
+    LocalDate dueDate;
 }

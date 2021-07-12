@@ -62,7 +62,7 @@ class ListEditorTest {
 
         listEditor.editDueDate(toDoList, date, "item"); // change the due date of the item
 
-        assertEquals(expected, item.duedate); // check if the due date of the item was set
+        assertEquals(expected, item.dueDate); // check if the due date of the item was set
 
     }
 

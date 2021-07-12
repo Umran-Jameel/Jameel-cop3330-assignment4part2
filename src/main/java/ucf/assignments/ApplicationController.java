@@ -277,7 +277,7 @@ public class ApplicationController {
 
 
             Text current = new Text();
-            current.setText("Current due date: " + toDoList.list.get(index).duedate);
+            current.setText("Current due date: " + toDoList.list.get(index).dueDate);
 
             // new stage for selecting a date
             Stage stage2 = new Stage();

@@ -39,7 +39,7 @@ public class ListEditor {
     public void editDueDate(ToDoList toDoList, LocalDate dueDate, String itemName) {
         int index = findIndex(toDoList, itemName); // finding the index of the item
 
-        toDoList.list.get(index).duedate = dueDate; // set the due date to be the one the user entered
+        toDoList.list.get(index).dueDate = dueDate; // set the due date to be the one the user entered
     }
 
     public void markAsComplete(ToDoList toDoList, int index) {
